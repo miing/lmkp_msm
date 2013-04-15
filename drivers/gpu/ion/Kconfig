@@ -1,0 +1,27 @@
+menuconfig ION
+	tristate "Ion Memory Manager"
+	select GENERIC_ALLOCATOR
+	select DMA_SHARED_BUFFER
+	help
+	  Chose this option to enable the ION Memory Manager.
+
+config ION_TEGRA
+	tristate "Ion for Tegra"
+	depends on ARCH_TEGRA && ION
+	help
+	  Choose this option if you wish to use ion on an nVidia Tegra.
+
+config ION_MSM
+	tristate "Ion for MSM"
+	depends on ARCH_MSM && ION
+	help
+	  Choose this option if you wish to use ion on an MSM target.
+
+config ION_LEAK_CHECK
+	bool "Check for leaked Ion buffers (debugging)"
+	depends on ION
+	help
+	  Choose this option if you wish to enable checking for leaked
+	  ion buffers at runtime. Choosing this option will also add a
+	  debugfs node under the ion directory that can be used to
+	  enable/disable the leak checking.
